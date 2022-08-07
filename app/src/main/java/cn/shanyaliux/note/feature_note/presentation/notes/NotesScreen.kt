@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -25,7 +26,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun NotesScreen(
     navController: NavController,
-    viewModel: NotesViewModel = hiltViewModel()
+    viewModel: NotesViewModel = hiltViewModel(),
+    openDrawer: () -> Unit
 ) {
     val state = viewModel.state.value
     val scaffoldState = rememberScaffoldState()
@@ -54,8 +56,11 @@ fun NotesScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                IconButton(onClick = { openDrawer() } ) {
+                    Icon(Icons.Filled.Menu, contentDescription = "")
+                }
                 Text(
-                    text = "Your note",
+                    text = "书笺",
                     style = MaterialTheme.typography.h4
                 )
                 IconButton(
