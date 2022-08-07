@@ -1,17 +1,17 @@
 package cn.shanyaliux.note.feature_note.presentation.about
 
+import android.app.Activity
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import cn.shanyaliux.note.feature_note.presentation.about.update.Update
 
 @Composable
 fun About(navController: NavController) {
@@ -50,8 +50,17 @@ fun AboutComponent(onButtonClicked: () -> Unit){
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "About.", style = MaterialTheme.typography.h4)
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            val activity = LocalContext.current as Activity
+            val update = Update(activity)
+
+            Button(
+                onClick = { update.check(true) }
+            ) {
+                Text(text = "更新")
+            }
+
         }
     }
 

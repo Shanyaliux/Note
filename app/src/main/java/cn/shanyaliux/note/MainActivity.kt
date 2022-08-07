@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import cn.shanyaliux.note.feature_note.presentation.about.About
+import cn.shanyaliux.note.feature_note.presentation.about.update.Update
 import cn.shanyaliux.note.feature_note.presentation.add_edit_note.AddEditNoteScreen
 import cn.shanyaliux.note.feature_note.presentation.drawer.Drawer
 import cn.shanyaliux.note.feature_note.presentation.notes.NotesScreen
@@ -22,6 +23,9 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val update = Update(this)
+
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,6 +111,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        update.check()
     }
 }
 
